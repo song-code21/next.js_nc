@@ -1,4 +1,5 @@
 import { useState } from "react";
+import NavBar from "../components/Navbar";
 
 //next.js의 pre-rendering 초기상태로 pre-rendering을 하고, 이후에 api요청으로 값들을 받아옴
 
@@ -7,14 +8,8 @@ export default function Home() {
 
   return (
     <div>
-      <h1>hello{counter}</h1>
-      <button
-        onClick={() => {
-          setCounter((prev) => prev + 1);
-        }}
-      >
-        +
-      </button>
+      <NavBar></NavBar>
+      <h1>Home</h1>
     </div>
   );
 }
