@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import styles from "./NavBar.module.css";
+
+//css 모듈 패턴을 이용한 style적용
+//자바스크립트 object의 프로퍼티 형식으로 적음
+//페이지가 빌드될 때 next.js가 클래스 이름을 무작위로 바꿔줄 것임
 
 export default function NavBar() {
   const router = useRouter();
   console.log(router);
   return (
-    <nav>
+    <nav className={styles.nav}>
       <Link href="/">
         <a style={{ color: router.pathname === "/" ? "red" : "blue" }}>Home</a>
       </Link>
