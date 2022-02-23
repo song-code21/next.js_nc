@@ -1,5 +1,6 @@
 import { useState } from "react";
-import NavBar from "../components/Navbar";
+import Head from "next/head";
+import Seo from "../components/Seo";
 
 //next.js의 pre-rendering 초기상태로 pre-rendering을 하고, 이후에 api요청으로 값들을 받아옴
 
@@ -8,6 +9,7 @@ export default function Home() {
 
   return (
     <div>
+      <Seo title={"Home"} />
       <h1>Home</h1>
     </div>
   );
