@@ -2,18 +2,13 @@ import { useEffect, useState } from "react";
 import Seo from "../components/Seo";
 
 //next.js의 pre-rendering 초기상태로 pre-rendering을 하고, 이후에 api요청으로 값들을 받아옴
-const API_KEY = "54bf51a6df094ae6efe05815093b605b";
 
 export default function Home() {
   const [movies, setMovies] = useState();
 
   useEffect(() => {
     (async () => {
-      const { results } = await (
-        await fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
-        )
-      ).json();
+      const { results } = await (await fetch("/api/movies")).json();
       setMovies(results);
     })();
   }, []);
