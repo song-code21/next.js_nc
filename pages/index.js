@@ -3,27 +3,29 @@ import Seo from "../components/Seo";
 
 //next.js의 pre-rendering 초기상태로 pre-rendering을 하고, 이후에 api요청으로 값들을 받아옴
 
-export default function Home() {
-  const [movies, setMovies] = useState();
-
-  useEffect(() => {
-    (async () => {
-      const { results } = await (await fetch("/api/movies")).json();
-      setMovies(results);
-    })();
-  }, []);
-
+export default function Home({ results }) {
   return (
     <div>
       <Seo title={"Home"} />
-      {!movies && <h4>Loading...</h4>}
-      {movies?.map((movie) => (
+      {results?.map((movie) => (
         <div key={movie.id}>
           <h4>{movie.original_title}</h4>
         </div>
       ))}
     </div>
   );
+}
+
+//서버사이드 렌더링 function 이름은 꼭 getServerSideProps일 것
+export async function getServerSideProps() {
+  const { results } = await (
+    await fetch("http://localhost:3000/api/movies")
+  ).json();
+  return {
+    props: {
+      results,
+    },
+  };
 }
 
 //라이브러리와 프레임워크의 차이점
