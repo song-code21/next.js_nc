@@ -17,6 +17,9 @@ export default function Home({ results }) {
 }
 
 //서버사이드 렌더링 function 이름은 꼭 getServerSideProps일 것
+//reacp
+//아래의 코드는 서버사이드 렌더링이 가능하도록 해주는 코드이다. 서버사이드 렌더링을 할 경우에는 아래의 코드에서 fetch가 다 이루어지기 전까지는
+//client사이드에서 아무것도 보이지 않고, fetch를 기다리게 된다. 그러면 api가 느린 경우에는 초기 렌더링이 오래 걸린다는 단점이 있을 수 있다.
 export async function getServerSideProps() {
   const { results } = await (
     await fetch("http://localhost:3000/api/movies")
