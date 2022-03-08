@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Seo from "../components/Seo";
+import Link from "next/link";
 
 //next.js의 pre-rendering 초기상태로 pre-rendering을 하고, 이후에 api요청으로 값들을 받아옴
 
@@ -8,9 +9,13 @@ export default function Home({ results }) {
     <div>
       <Seo title={"Home"} />
       {results?.map((movie) => (
-        <div key={movie.id}>
-          <h4>{movie.original_title}</h4>
-        </div>
+        <Link key={movie.id} href={`/movies/${movie.id}`}>
+          <a>
+            <div key={movie.id}>
+              <h4>{movie.original_title}</h4>
+            </div>
+          </a>
+        </Link>
       ))}
     </div>
   );
